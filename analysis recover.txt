@@ -1,0 +1,44 @@
+open memory card file
+fopen != NULL
+
+find beginning of JPEG
+buffer 512 bytes 
+sequences of bytes with distinct header
+stored side-by-side in blocks of 512 bytes
+reading lines fread(data, size, number, inptr);
+	- data: pointer to a struct that will contain the bytes you're reading
+	- size: size of each element read 
+	- number: number of elements read
+	- inptr: FILE * to read from
+
+
+beginning of each JPEG indicated with sequence
+if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0 == 0xe0)
+
+open a new JPEG
+naming JPEG's in order they are found, starting at 000 (keep track with counter++)
+sprintf(filename, "%03i.jpg", 2) -> 002.jpg
+FILE *img = fopen(filename, "w") 
+
+fread(buffer, 1, 512, raw_file)
+	
+if jpeg found: write 512 bytes until new JPEG
+	- data: pointer to the struct that contains the bytes you're reading from
+	- size
+	- number
+	- outptr: FILE * to write to
+
+detect end of file:
+fread(buffer, 1, 512, raw_file) != 1
+
+open card file
+repeat until end of card
+	read 512 bytes into a buffer
+	start of a new JPEG
+		YES ->
+		NO -> 
+	already found a JPEG
+		NO ->
+		YES ->
+close any remaining files
+	
